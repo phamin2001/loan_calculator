@@ -2,10 +2,20 @@
 
 document
   .getElementById('loan-form')
-  .addEventListener('submit', calculateResults);
+  .addEventListener('submit', function(e){
+    // Hide results
+    document.getElementById('results').style.display = 'none';
+
+    // Show loader
+    document.getElementById('loading').style.display = 'block';
+
+    setTimeout(calculateResults, 2000);
+
+    e.preventDefault(e);
+  });
 
 // Calculate Results
-function calculateResults(e) {
+function calculateResults() {
   // UI Vars
   const UIamount = document.getElementById('amount');
   const UIinterest = document.getElementById('interest');
@@ -28,17 +38,32 @@ function calculateResults(e) {
     UItotalInterest.value = (monthly * calculatedPayments - principle).toFixed(
       2
     );
+
+    // Show results
+    document.getElementById('results').style.display = 'block';
+    
+    // Hide loader
+    document.getElementById('loading').style.display = 'none';
+
   } else {
     showError('Please check your numbers');
   }
 
   // Because this is a form submit, we want to
   // prevent a default behavior
-  e.preventDefault();
+  // e.preventDefault(); // we don't need it after we
+  // change addEventListener 
 }
 
 // Show Error
 function showError(error) {
+    // Hide results
+    document.getElementById('results').style.display = 'none';
+    
+    // Hide loader
+    document.getElementById('loading').style.display = 'none';
+
+
   const errorDiv = document.createElement('div');
 
   // Get elemets(to add div error above them)
