@@ -1,18 +1,16 @@
 // Listen for submit
 
-document
-  .getElementById('loan-form')
-  .addEventListener('submit', function(e){
-    // Hide results
-    document.getElementById('results').style.display = 'none';
+document.getElementById('loan-form').addEventListener('submit', function (e) {
+  // Hide results
+  document.getElementById('results').style.display = 'none';
 
-    // Show loader
-    document.getElementById('loading').style.display = 'block';
+  // Show loader
+  document.getElementById('loading').style.display = 'block';
 
-    setTimeout(calculateResults, 2000);
+  setTimeout(calculateResults, 2000);
 
-    e.preventDefault(e);
-  });
+  e.preventDefault();
+});
 
 // Calculate Results
 function calculateResults() {
@@ -41,10 +39,9 @@ function calculateResults() {
 
     // Show results
     document.getElementById('results').style.display = 'block';
-    
+
     // Hide loader
     document.getElementById('loading').style.display = 'none';
-
   } else {
     showError('Please check your numbers');
   }
@@ -52,17 +49,16 @@ function calculateResults() {
   // Because this is a form submit, we want to
   // prevent a default behavior
   // e.preventDefault(); // we don't need it after we
-  // change addEventListener 
+  // change addEventListener
 }
 
 // Show Error
 function showError(error) {
-    // Hide results
-    document.getElementById('results').style.display = 'none';
-    
-    // Hide loader
-    document.getElementById('loading').style.display = 'none';
+  // Hide results
+  document.getElementById('results').style.display = 'none';
 
+  // Hide loader
+  document.getElementById('loading').style.display = 'none';
 
   const errorDiv = document.createElement('div');
 
